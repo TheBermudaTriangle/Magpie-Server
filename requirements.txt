@@ -3,3 +3,4 @@ flask_restful==0.3.5
 Jinja2
 Werkzeug
 wsgiref
+pymongo
