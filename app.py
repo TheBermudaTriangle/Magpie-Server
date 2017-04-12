@@ -10,7 +10,7 @@ api = Api(app)
 
 client = MongoClient(os.environ['MONGODB_URI'])
 db = client.user_data
-print(database_names())
+print(client.database_names())
 
 mylist = []
 
