@@ -16,11 +16,13 @@ class TodoList(Resource):
 
     def post(self):
         parser = reqparse.RequestParser()
+        parser.add_argument('username');
         parser.add_argument('lat')
         parser.add_argument('lng')
         args = parser.parse_args()
         lat = args['lat']
         lon = args['lng']
+        print(lat)
         return {"data":mylist}
 
 ##
