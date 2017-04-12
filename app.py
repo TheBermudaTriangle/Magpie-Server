@@ -21,7 +21,6 @@ class TodoList(Resource):
         args = parser.parse_args()
         lat = args['lat']
         lon = args['lng']
-        myDict[]
         return {"data":mylist}
 
 ##
