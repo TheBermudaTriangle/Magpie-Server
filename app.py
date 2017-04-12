@@ -10,6 +10,11 @@ api = Api(app)
 
 client = MongoClient(os.environ['MONGODB_URI'])
 db = client.user_data
+db.createUser({
+  user: "myUserAdmin",
+  pwd: "abc123",
+  roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+})
 print(client.database_names())
 
 mylist = []
