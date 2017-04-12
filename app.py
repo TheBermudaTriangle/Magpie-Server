@@ -3,9 +3,14 @@ import os
 from flask import Flask
 from flask import request
 from flask_restful import Resource, Api, reqparse, abort
+from pymongo import MongoClient
 
 app = Flask(__name__)
 api = Api(app)
+
+client = MongoClient(os.environ['MONGODB_URI'])
+db = client.user_data
+print(database_names)
 
 mylist = []
 
