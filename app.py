@@ -38,6 +38,7 @@ class TodoList(Resource):
         lng = args['lng']
         print(user_name)  
         document = {'username':user_name, 'lat':lat, 'lng':lng}
+        collection.delete_one({'username':user_name,'lat':lat,'lng':lng})
         collection.insert_one(document)
         x = dumps(collection.find())
         y = json.loads(x)
