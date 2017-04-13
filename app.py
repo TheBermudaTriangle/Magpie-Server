@@ -36,7 +36,15 @@ class TodoList(Resource):
         print(user_name)  
         post = {'username':user_name, 'lat':lat, 'lng':lng}
         collection.insert_one(post)
-        return {"result":mylist}
+        return dumps(collection.find())
+
+    def delete(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('username')
+        parser.add_argument('lat')
+        parser.add_argument('lng')
+        args = parser.parse_args()
+        collection.delete_one({'username':username,'lat':lat,'lng':lng})
 
 ##
 ## Actually setup the Api resource routing here
