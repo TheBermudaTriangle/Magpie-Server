@@ -23,6 +23,8 @@ class TodoList(Resource):
         cursor = collection.find()
         x = dumps(cursor)
         print(type(x))
+        y = json.loads(x)
+        print(type(y))
         return x
 
     def post(self):
