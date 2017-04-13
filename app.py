@@ -4,7 +4,7 @@ from flask import Flask
 from flask import request
 from flask_restful import Resource, Api, reqparse, abort
 from pymongo import MongoClient
-from bson.json_util import dumps
+from bson.json_util import dumps, loads
 
 app = Flask(__name__)
 api = Api(app)
