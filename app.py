@@ -3,8 +3,8 @@ import os
 from flask import Flask
 from flask import request, jsonify
 from flask_restful import Resource, Api, reqparse, abort
-from pymongo import MongoClient
-from bson.json_util import dumps
+#from pymongo import MongoClient
+#from bson.json_util import dumps
 
 app = Flask(__name__)
 api = Api(app)
