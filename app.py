@@ -16,9 +16,8 @@ collection = db.userinfo
 #post = {'username':'nit','lat':29.951573,'lng':76.815305}
 
 mylist = []
-
-
 mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singhal','lat':26.830996,'lng':75.762118},{'username':'swapnil','lat':25.5794912,'lng':85.1167952},{'username':'bhatiya','lat':28.3953089,'lng':77.2698073}]
+
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
@@ -32,10 +31,10 @@ class TodoList(Resource):
         args = parser.parse_args()
         user_name = args['username']
         lat = args['lat']
-        lon = args['lng']
+        lng = args['lng']
         print(user_name)  
-        post = {'username':user_name, 'lat':lat, 'lng':lng}
-        collection.insert_one(post)
+        document = {'username':user_name, 'lat':lat, 'lng':lng}
+        collection.insert_one(document)
         return dumps(collection.find())
 
     def delete(self):
@@ -44,11 +43,12 @@ class TodoList(Resource):
         parser.add_argument('lat')
         parser.add_argument('lng')
         args = parser.parse_args()
-        collection.delete_one({'username':username,'lat':lat,'lng':lng})
+        user_name = args['username']
+        lat = args['lat']
+        lng = args['lng']
+        parser.parse_args()
+        collection.delete_one({'username':user_name,'lat':lat,'lng':lng})
 
-##
-## Actually setup the Api resource routing here
-##
 api.add_resource(TodoList, '/')
 
 if __name__ == '__main__':
