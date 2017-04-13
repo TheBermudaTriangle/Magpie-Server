@@ -21,7 +21,7 @@ mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singha
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
-        return dumps(cursor)
+        return flask.jsonify(cursor)
 
     def post(self):
         parser = reqparse.RequestParser()
