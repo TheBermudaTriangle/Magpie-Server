@@ -25,7 +25,7 @@ class TodoList(Resource):
         print(type(x))
         y = json.loads(x)
         print(type(y))
-        return x
+        return y
 
     def post(self):
         parser = reqparse.RequestParser()
