@@ -22,9 +22,9 @@ class TodoList(Resource):
     def get(self):
         cursor = collection.find()
         x = dumps(cursor)
-        print(type(x))
+        #print(type(x))
         y = json.loads(x)
-        print(type(y))
+        #print(type(y))
         return y
 
     def post(self):
@@ -39,7 +39,9 @@ class TodoList(Resource):
         print(user_name)  
         document = {'username':user_name, 'lat':lat, 'lng':lng}
         collection.insert_one(document)
-        return dumps(collection.find())
+        x = dumps(collection.find())
+        y = json.loads(x)
+        return y
 
     def delete(self):
         parser = reqparse.RequestParser()
