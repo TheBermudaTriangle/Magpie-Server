@@ -36,7 +36,7 @@ class TodoList(Resource):
         print(user_name)  
         document = {'username':user_name, 'lat':lat, 'lng':lng}
         collection.insert_one(document)
-        return dumps(collection.find().replace("u\'","\'"))
+        return dumps(collection.find())
 
     def delete(self):
         parser = reqparse.RequestParser()
