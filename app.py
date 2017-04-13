@@ -21,7 +21,9 @@ mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singha
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
-        return dumps(cursor)
+        x = dumps(cursor)
+        print(type(x))
+        return x
 
     def post(self):
         parser = reqparse.RequestParser()
