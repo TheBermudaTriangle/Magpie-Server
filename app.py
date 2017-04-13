@@ -21,7 +21,7 @@ mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singha
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
-        json_docs = [json.dumps(doc, default=json_util.default) for doc in cursor]
+        json_docs = [dumps(doc) for doc in cursor]
         return json_docs
 
     def post(self):
