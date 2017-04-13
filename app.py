@@ -1,7 +1,7 @@
 import json
 import os
 from flask import Flask
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource, Api, reqparse, abort
 from pymongo import MongoClient
 from bson.json_util import dumps, loads
@@ -21,7 +21,7 @@ mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singha
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
-        return flask.jsonify(cursor)
+        return jsonify(cursor)
 
     def post(self):
         parser = reqparse.RequestParser()
