@@ -11,9 +11,9 @@ api = Api(app)
 client = MongoClient(os.environ['MONGODB_URI'])
 db = client.heroku_qqx020h6
 collection = db.userinfo
-posts = db.posts
+#posts = db.posts
 post = {'username':'nit','lat':29.951573,'lng':76.815305}
-post_id = posts.insert_one(post).inserted_id
+post_id = collection.insert_one(post).inserted_id
 print(post_id)
 
 mylist = []
