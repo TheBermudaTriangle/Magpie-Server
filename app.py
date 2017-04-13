@@ -4,6 +4,7 @@ from flask import Flask
 from flask import request
 from flask_restful import Resource, Api, reqparse, abort
 from pymongo import MongoClient
+from bson.json_util import dumps
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,9 +13,7 @@ client = MongoClient(os.environ['MONGODB_URI'])
 db = client.heroku_qqx020h6
 collection = db.userinfo
 #posts = db.posts
-post = {'username':'nit','lat':29.951573,'lng':76.815305}
-post_id = collection.insert_one(post).inserted_id
-print(post_id)
+#post = {'username':'nit','lat':29.951573,'lng':76.815305}
 
 mylist = []
 
@@ -22,7 +21,8 @@ mylist = []
 mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singhal','lat':26.830996,'lng':75.762118},{'username':'swapnil','lat':25.5794912,'lng':85.1167952},{'username':'bhatiya','lat':28.3953089,'lng':77.2698073}]
 class TodoList(Resource):
     def get(self):
-        return {"result":mylist}
+        cursor = collection.find()
+        return dumps(cursor)
 
     def post(self):
         parser = reqparse.RequestParser()
@@ -30,9 +30,12 @@ class TodoList(Resource):
         parser.add_argument('lat')
         parser.add_argument('lng')
         args = parser.parse_args()
+        user_name = args['username']
         lat = args['lat']
         lon = args['lng']
-        print(lat)
+        print(user_name)  
+        post = {'username':user_name, 'lat':lat, 'lng':lng}
+        collection.insert_one(post)
         return {"result":mylist}
 
 ##
