@@ -14,19 +14,12 @@ api = Api(app)
 client = MongoClient(os.environ['MONGODB_URI'])
 db = client.heroku_qqx020h6
 collection = db.userinfo
-#posts = db.posts
-#post = {'username':'nit','lat':29.951573,'lng':76.815305}
-
-mylist = []
-mylist = [{'username':'nit','lat':29.951573,'lng':76.815305},{'username':'singhal','lat':26.830996,'lng':75.762118},{'username':'swapnil','lat':25.5794912,'lng':85.1167952},{'username':'bhatiya','lat':28.3953089,'lng':77.2698073}]
 
 class TodoList(Resource):
     def get(self):
         cursor = collection.find()
         x = dumps(cursor)
-        #print(type(x))
         y = json.loads(x)
-        #print(type(y))
         return y
 
     def post(self):
@@ -37,8 +30,7 @@ class TodoList(Resource):
         args = parser.parse_args()
         user_name = args['username']
         lat = args['lat']
-        lng = args['lng']
-        print(user_name)  
+        lng = args['lng']  
         document = {'username':user_name, 'lat':lat, 'lng':lng}
         collection.delete_one({'username':user_name})
         collection.insert_one(document)
@@ -59,7 +51,6 @@ class TodoList(Resource):
         collection.delete_one({'username':user_name,'lat':lat,'lng':lng})
 
 api.add_resource(TodoList, '/')
-
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     app.run(debug=False, port=port, host='0.0.0.0')
